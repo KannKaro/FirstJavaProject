@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddNumber {
     @GetMapping("/test")
     public int AddNum() {
-        return 1;
+        return 1 + 2;
     }
 }
