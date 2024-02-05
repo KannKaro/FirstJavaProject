@@ -8,10 +8,8 @@ import java.math.BigDecimal;
 
 @RestController
 public class AddNumber {
-    @GetMapping("/test")
-    public BigDecimal AddNum(@RequestParam("number1") String number1, @RequestParam("number2") String number2) {
-        BigDecimal BigDecimalNumber1 = new BigDecimal(number1);
-        BigDecimal BigDecimalNumber2 = new BigDecimal(number2);
-        return BigDecimalNumber1.add(BigDecimalNumber2);
+    @GetMapping("/AddNumbers")
+    public BigDecimal addNum(@RequestParam("number1") BigDecimal number1, @RequestParam("number2") BigDecimal number2) {
+        return number1.add(number2);
     }
 }
