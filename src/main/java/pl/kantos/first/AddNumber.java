@@ -11,14 +11,14 @@ import java.math.BigDecimal;
 @RestController
 public class AddNumber {
     @GetMapping("/AddNumbers")
-    public BigDecimal addNum(@RequestParam("number1") BigDecimal number1, @RequestParam("number2") BigDecimal number2) {
+    public BigDecimal sumNumbers(@RequestParam("number1") BigDecimal number1, @RequestParam("number2") BigDecimal number2) {
         return number1.add(number2);
     }
 
     @PostMapping("/AddNumbersPost")
-    public BigDecimal addNumbers(@RequestBody NumbersPostMethod numbers) {
-        BigDecimal number1 = numbers.createNumber1();
-        BigDecimal number2 = numbers.createNumber2();
+    public BigDecimal sumOfNumbersPostMethod(@RequestBody NumbersPostMethod numbersPostMethod) {
+        BigDecimal number1 = numbersPostMethod.createNumber1();
+        BigDecimal number2 = numbersPostMethod.createNumber2();
         return number1.add(number2);
     }
 }
