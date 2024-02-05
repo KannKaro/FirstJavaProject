@@ -4,10 +4,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
+
 @RestController
 public class AddNumber {
     @GetMapping("/test")
-    public int AddNum(@RequestParam("n1") int n1, @RequestParam("n2") int n2) {
-        return n1 + n2;
+    public BigDecimal AddNum(@RequestParam("number1") String number1, @RequestParam("number2") String number2) {
+        BigDecimal BigDecimalNumber1 = new BigDecimal(number1);
+        BigDecimal BigDecimalNumber2 = new BigDecimal(number2);
+        return BigDecimalNumber1.add(BigDecimalNumber2);
     }
 }
