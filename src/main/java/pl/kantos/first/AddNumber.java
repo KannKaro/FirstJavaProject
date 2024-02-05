@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @RestController
 public class AddNumber {
     @GetMapping("/addNumbers")
-    public BigDecimal sumNumbers(@RequestParam("number1") BigDecimal number1, @RequestParam("number2") BigDecimal number2) {
+    public BigDecimal sumNumbersGetMethod(@RequestParam("number1") BigDecimal number1, @RequestParam("number2") BigDecimal number2) {
         return number1.add(number2);
     }
 
