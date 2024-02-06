@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.math.BigDecimal;
 
 @RestController
-public class AddNumber {
+public class SumOfNumbers {
     @GetMapping("/addNumbers")
     public BigDecimal sumNumbersGETMethod(@RequestParam("number1") BigDecimal number1, @RequestParam("number2") BigDecimal number2) {
         return number1.add(number2);
