@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.math.BigDecimal;
 
 @RestController
-public class SumOfNumbers {
+public class Controller {
     @GetMapping("/addNumbers")
-    public BigDecimal sumNumbersGETMethod(@RequestParam("number1") BigDecimal number1, @RequestParam("number2") BigDecimal number2) {
-        return number1.add(number2);
+    public BigDecimal sumNumbersGETMethod(@RequestParam("number1") BigDecimal numberGET1, @RequestParam("number2") BigDecimal numberGET2) {
+        return numberGET1.add(numberGET2);
     }
 
     @PostMapping("/addNumbersPOST")
     public BigDecimal sumNumbersPOSTMethod(@RequestBody NumbersForPOSTMethod numbersPOSTMethod) {
-        BigDecimal number1 = numbersPOSTMethod.number1();
-        BigDecimal number2 = numbersPOSTMethod.number2();
-        return number1.add(number2);
+        BigDecimal numberPOST1 = numbersPOSTMethod.numberForPostMethod1();
+        BigDecimal numberPOST2 = numbersPOSTMethod.numberForPostMethod2();
+        return numberPOST1.add(numberPOST2);
     }
 }

@@ -1,4 +1,4 @@
-function addNumbersPOST() {
+function addNumbersPOSTFunction() {
     let number1 = document.getElementById('number1').value 
     let number2 = document.getElementById('number2').value
     
@@ -8,8 +8,8 @@ function addNumbersPOST() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            number1: number1,
-            number2: number2
+            numberForPostMethod1: number1,
+            numberForPostMethod2: number2
         })
     })
     .then(response => {
@@ -23,7 +23,7 @@ function addNumbersPOST() {
     })
 }
 
-function addNumbersGET() {
+function addNumbersGETFunction() {
     let number1 = document.getElementById('number1').value 
     let number2 = document.getElementById('number2').value
 
