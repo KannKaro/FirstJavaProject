@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 
+//Kolejny challenge, z restTemplate zrob @bean i uzywająć DI (dependency injection) wstrzyknij w kontruktorze controllera a potem dopiero uzyj
+//kolejny challenge. Chcialbym zeby ten adres byl konfigurowalny w application.properties a potem tutaj pobierany chodzi mi bardziej o adres hosta czyli "https://random-word-api.herokuapp.com"
 @RestController
 public class Controller {
     @GetMapping("/calculator/add")
@@ -26,16 +28,14 @@ public class Controller {
 
     @PostMapping("/calculator/add")
     public BigDecimal sumNumbersSecondOption(@RequestBody CalculatorAddOperationRequest request) {
-        BigDecimal firstNumberForSecondOption = request.firstNumber();
-        BigDecimal secondNumberForSecondOption = request.secondNumber();
-        return firstNumberForSecondOption.add(secondNumberForSecondOption);
+        return request.firstNumber().add(request.secondNumber());
     }
 
     @PostMapping("/words")
     public String wordFromSiteSecondOption(@RequestBody AmountOfWordsRequest request) {
-        int amountOfWords = request.amountOfWords();
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://random-word-api.herokuapp.com/word?number=" + amountOfWords;
+        String url = "https://random-word-api.herokuapp.com/word?number=" + request.amountOfWords();
         return restTemplate.getForObject(url, String.class);
     }
 }
+
