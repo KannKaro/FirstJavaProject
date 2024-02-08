@@ -13,27 +13,27 @@ import java.math.BigDecimal;
 @RestController
 public class Controller {
     @GetMapping("/calculator/add")
-    public BigDecimal sumNumbersGETMethod(@RequestParam("number1") BigDecimal numberGET1, @RequestParam("number2") BigDecimal numberGET2) {
-        return numberGET1.add(numberGET2);
+    public BigDecimal sumNumbers(@RequestParam("number1") BigDecimal firstNumber, @RequestParam("number2") BigDecimal secondNumber) {
+        return firstNumber.add(secondNumber);
     }
 
     @GetMapping("/words")
-    public  String wordFromSiteGETMethod(@RequestParam("amountOfWordsGETMethod") int amountGET){
+    public  String wordFromSite(@RequestParam("amountOfWords") int amount){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://random-word-api.herokuapp.com/word?number=" + amountGET;
+        String url = "https://random-word-api.herokuapp.com/word?number=" + amount;
         return restTemplate.getForObject(url, String.class);
     }
 
     @PostMapping("/calculator/add")
-    public BigDecimal sumNumbersPOSTMethod(@RequestBody CalculatorAddOperationRequest request) {
-        BigDecimal numberPOST1 = request.numberForPostMethod1();
-        BigDecimal numberPOST2 = request.numberForPostMethod2();
-        return numberPOST1.add(numberPOST2);
+    public BigDecimal sumNumbersSecondOption(@RequestBody CalculatorAddOperationRequest request) {
+        BigDecimal firstNumberForSecondOption = request.firstNumber();
+        BigDecimal secondNumberForSecondOption = request.secondNumber();
+        return firstNumberForSecondOption.add(secondNumberForSecondOption);
     }
 
     @PostMapping("/words")
-    public String wordFromSitePOSTMethod(@RequestBody AmountOfWordsRequest request) {
-        int amountOfWords = request.amountOfWordsPOSTMethod();
+    public String wordFromSiteSecondOption(@RequestBody AmountOfWordsRequest request) {
+        int amountOfWords = request.amountOfWords();
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://random-word-api.herokuapp.com/word?number=" + amountOfWords;
         return restTemplate.getForObject(url, String.class);
