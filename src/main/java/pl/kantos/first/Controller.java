@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.client.RestTemplate;
+
 
 import java.math.BigDecimal;
 
@@ -16,9 +18,18 @@ public class Controller {
     }
 
     @PostMapping("/addNumbersPOST")
-    public BigDecimal sumNumbersPOSTMethod(@RequestBody NumbersForPOSTMethod requestForNumbersPOSTMethod) {
-        BigDecimal numberPOST1 = requestForNumbersPOSTMethod.numberForPostMethod1();
-        BigDecimal numberPOST2 = requestForNumbersPOSTMethod.numberForPostMethod2();
+    public BigDecimal sumNumbersPOSTMethod(@RequestBody NumbersForPOSTMethod request) {
+        BigDecimal numberPOST1 = request.numberForPostMethod1();
+        BigDecimal numberPOST2 = request.numberForPostMethod2();
         return numberPOST1.add(numberPOST2);
+    }
+
+    @PostMapping("/randomWordPOST")
+    public String wordFromSite(@RequestBody AmountOfWordsClass request) {
+        int amountOfWords = request.amountOfWordsPOSTMethod();
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://random-word-api.herokuapp.com/word?number=" + amountOfWords;
+        String randomWord = restTemplate.getForObject(url, String.class);
+        return randomWord;
     }
 }
