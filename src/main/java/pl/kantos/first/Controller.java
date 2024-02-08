@@ -21,8 +21,7 @@ public class Controller {
     public  String wordFromSiteGETMethod(@RequestParam("amountOfWordsGETMethod") int amountGET){
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://random-word-api.herokuapp.com/word?number=" + amountGET;
-        String randomWordsWithGETMethod = restTemplate.getForObject(url, String.class);
-        return randomWordsWithGETMethod;
+        return restTemplate.getForObject(url, String.class);
     }
 
     @PostMapping("/addNumbersPOST")
@@ -37,7 +36,6 @@ public class Controller {
         int amountOfWords = request.amountOfWordsPOSTMethod();
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://random-word-api.herokuapp.com/word?number=" + amountOfWords;
-        String randomWordsWithPOSTMethod = restTemplate.getForObject(url, String.class);
-        return randomWordsWithPOSTMethod;
+        return restTemplate.getForObject(url, String.class);
     }
 }
