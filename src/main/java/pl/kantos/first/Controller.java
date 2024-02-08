@@ -17,7 +17,13 @@ public class Controller {
         return numberGET1.add(numberGET2);
     }
 
-
+    @GetMapping("/randomWordsGET")
+    public  String wordFromSiteGETMethod(@RequestParam("amountOfWordsGETMethod") int amountGET){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://random-word-api.herokuapp.com/word?number=" + amountGET;
+        String randomWordsWithGETMethod = restTemplate.getForObject(url, String.class);
+        return randomWordsWithGETMethod;
+    }
 
     @PostMapping("/addNumbersPOST")
     public BigDecimal sumNumbersPOSTMethod(@RequestBody NumbersForPOSTMethodClass request) {
@@ -26,12 +32,12 @@ public class Controller {
         return numberPOST1.add(numberPOST2);
     }
 
-    @PostMapping("/randomWordPOST")
+    @PostMapping("/randomWordsPOST")
     public String wordFromSitePOSTMethod(@RequestBody AmountOfWordsClass request) {
         int amountOfWords = request.amountOfWordsPOSTMethod();
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://random-word-api.herokuapp.com/word?number=" + amountOfWords;
-        String randomWord = restTemplate.getForObject(url, String.class);
-        return randomWord;
+        String randomWordsWithPOSTMethod = restTemplate.getForObject(url, String.class);
+        return randomWordsWithPOSTMethod;
     }
 }
