@@ -17,6 +17,8 @@ public class Controller {
         return numberGET1.add(numberGET2);
     }
 
+
+
     @PostMapping("/addNumbersPOST")
     public BigDecimal sumNumbersPOSTMethod(@RequestBody NumbersForPOSTMethodClass request) {
         BigDecimal numberPOST1 = request.numberForPostMethod1();
@@ -25,7 +27,7 @@ public class Controller {
     }
 
     @PostMapping("/randomWordPOST")
-    public String wordFromSite(@RequestBody AmountOfWordsClass request) {
+    public String wordFromSitePOSTMethod(@RequestBody AmountOfWordsClass request) {
         int amountOfWords = request.amountOfWordsPOSTMethod();
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://random-word-api.herokuapp.com/word?number=" + amountOfWords;
