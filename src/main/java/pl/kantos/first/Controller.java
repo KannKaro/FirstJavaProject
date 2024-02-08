@@ -18,7 +18,7 @@ public class Controller {
     }
 
     @PostMapping("/addNumbersPOST")
-    public BigDecimal sumNumbersPOSTMethod(@RequestBody NumbersForPOSTMethod request) {
+    public BigDecimal sumNumbersPOSTMethod(@RequestBody NumbersForPOSTMethodClass request) {
         BigDecimal numberPOST1 = request.numberForPostMethod1();
         BigDecimal numberPOST2 = request.numberForPostMethod2();
         return numberPOST1.add(numberPOST2);
