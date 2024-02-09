@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/words")
 public class WordController {
-    public RestTemplate restTemplate;
+    public final RestTemplate restTemplate;
     @Value("${wordApi.address}")
     public String wordApiAddress;
 
