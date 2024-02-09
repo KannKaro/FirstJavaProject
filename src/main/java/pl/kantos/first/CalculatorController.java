@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
-//Kolejny challenge, z restTemplate zrob @bean i uzywająć DI (dependency injection) wstrzyknij w kontruktorze controllera a potem dopiero uzyj
 @RestController
 @RequestMapping("/calculator")
 public class CalculatorController {

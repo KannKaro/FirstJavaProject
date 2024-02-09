@@ -11,8 +11,9 @@ public class WordController {
     public RestTemplate restTemplate;
     @Value("${wordApi.address}")
     public String wordApiAddress;
+
     @Autowired
-    public WordController(RestTemplate restTemplate){
+    public WordController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
