@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/words")
 public class WordController {
     public final RestTemplate restTemplate;
-    @Value("${wordApi.address}")
+    @Value("${wordApi.host}")
     public String wordApiAddress;
 
     @Autowired

@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @RestController
 @RequestMapping("/calculator")
 public class CalculatorController {
-    @Value("${wordApi.address}")
+    @Value("${wordApi.host}")
     public String wordApiAddress;
 
     @GetMapping("/add")
