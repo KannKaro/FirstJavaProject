@@ -9,8 +9,6 @@ import java.math.BigDecimal;
 @RestController
 @RequestMapping("/calculator")
 public class CalculatorController {
-    @Value("${wordApi.host}")
-    public String wordApiAddress;
 
     @GetMapping("/add")
     public BigDecimal sumNumbers(@RequestParam("firstNumber") BigDecimal firstNumber, @RequestParam("secondNumber") BigDecimal secondNumber) {

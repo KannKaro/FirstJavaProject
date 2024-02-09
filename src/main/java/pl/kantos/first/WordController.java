@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class WordController {
     public final RestTemplate restTemplate;
     @Value("${wordApi.host}")
-    public String wordApiAddress;
+    public String wordApiHost;
 
     @Autowired
     public WordController(RestTemplate restTemplate) {
@@ -19,13 +19,13 @@ public class WordController {
 
     @GetMapping("/")
     public String wordFromSite(@RequestParam("amountOfWords") int amount) {
-        String url = wordApiAddress + "/word?number=" + amount;
+        String url = wordApiHost + "/word?number=" + amount;
         return restTemplate.getForObject(url, String.class);
     }
 
     @PostMapping("/")
     public String wordFromSiteSecondOption(@RequestBody AmountOfWordsRequest request) {
-        String url = wordApiAddress + "/word?number=" + request.amountOfWords();
+        String url = wordApiHost + "/word?number=" + request.amountOfWords();
         return restTemplate.getForObject(url, String.class);
     }
 }
