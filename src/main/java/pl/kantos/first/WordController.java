@@ -1,6 +1,5 @@
 package pl.kantos.first;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -8,11 +7,10 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/words")
 public class WordController {
-    public final RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
     @Value("${wordApi.host}")
     public String wordApiHost;
 
-    @Autowired
     public WordController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
