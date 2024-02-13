@@ -17,13 +17,11 @@ public class WordController {
 
     @GetMapping("/")
     public String wordFromSite(@RequestParam("amountOfWords") int amount) {
-        String url = wordApiHost + "/word?number=" + amount;
-        return restTemplate.getForObject(url, String.class);
+        return restTemplate.getForObject(UrlGeneratorWordApi.generateUrl(wordApiHost, amount), String.class);
     }
 
     @PostMapping("/")
     public String wordFromSiteSecondOption(@RequestBody AmountOfWordsRequest request) {
-        String url = wordApiHost + "/word?number=" + request.amountOfWords();
-        return restTemplate.getForObject(url, String.class);
+        return restTemplate.getForObject(UrlGeneratorWordApi.generateUrl(wordApiHost, request.amountOfWords()), String.class);
     }
 }
