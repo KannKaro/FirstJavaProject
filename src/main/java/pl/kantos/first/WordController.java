@@ -17,11 +17,11 @@ public class WordController {
 
     @GetMapping("/")
     public String wordFromSite(@RequestParam("amountOfWords") int amount) {
-        return restTemplate.getForObject(UrlGeneratorWordApi.generateUrl(wordApiHost, amount), String.class);
+        return restTemplate.getForObject(WordApiUrlGenerator.generateUrl(wordApiHost, amount), String.class);
     }
 
     @PostMapping("/")
     public String wordFromSiteSecondOption(@RequestBody AmountOfWordsRequest request) {
-        return restTemplate.getForObject(UrlGeneratorWordApi.generateUrl(wordApiHost, request.amountOfWords()), String.class);
+        return restTemplate.getForObject(WordApiUrlGenerator.generateUrl(wordApiHost, request.amountOfWords()), String.class);
     }
 }
