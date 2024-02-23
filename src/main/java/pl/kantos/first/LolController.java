@@ -12,6 +12,8 @@ public class LolController {
     public String lolAPIPuuidHost;
     @Value("${riotAPIKey}")
     public String riotAPIKey;
+    @Value("${lolAPISummonerInfo}")
+    public String lolAPISummonerInfo;
 
     public LolController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -25,5 +27,15 @@ public class LolController {
     @PostMapping("/account/puuid")
     public String accountInfoSecondOption(@RequestBody LolAccountRequest request) {
         return restTemplate.getForObject(LolApiAccountInfoUrlGenerator.generateUrl(request.accountName(), request.tagLine(), lolAPIPuuidHost, riotAPIKey), String.class);
+    }
+
+    @GetMapping("/summoner")
+    public String accountSummonerInfo(@RequestParam String puuid) {
+        return restTemplate.getForObject(LolSummonerInfoUrlGenerator.generateUrl(puuid, riotAPIKey, lolAPISummonerInfo), String.class);
+    }
+
+    @PostMapping("/summoner")
+    public String accountSummonerInfoSecondOption(@RequestBody LolSummonerRequest request) {
+        return restTemplate.getForObject(LolSummonerInfoUrlGenerator.generateUrl(request.puuid(), riotAPIKey, lolAPISummonerInfo), String.class);
     }
 }
