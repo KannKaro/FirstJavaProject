@@ -8,8 +8,8 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/lol")
 public class LolController {
     private final RestTemplate restTemplate;
-    @Value("${lolAPIAccount.host}")
-    public String lolAPIHost;
+    @Value("${lolAPIAccountPuuid.host}")
+    public String lolAPIPuuidHost;
     @Value("${riotAPIKey}")
     public String riotAPIKey;
 
@@ -19,11 +19,11 @@ public class LolController {
 
     @GetMapping("/account")
     public String accountInfo(@RequestParam("accountName") String name, @RequestParam("tagLine") String tag) {
-        return restTemplate.getForObject(LolApiAccountInfoUrlGenerator.generateUrl(name, tag, lolAPIHost, riotAPIKey), String.class);
+        return restTemplate.getForObject(LolApiAccountInfoUrlGenerator.generateUrl(name, tag, lolAPIPuuidHost, riotAPIKey), String.class);
     }
 
     @PostMapping("/account")
     public String accountInfoSecondOption(@RequestBody LolAccountRequest request) {
-        return restTemplate.getForObject(LolApiAccountInfoUrlGenerator.generateUrl(request.accountName(), request.tagLine(), lolAPIHost, riotAPIKey), String.class);
+        return restTemplate.getForObject(LolApiAccountInfoUrlGenerator.generateUrl(request.accountName(), request.tagLine(), lolAPIPuuidHost, riotAPIKey), String.class);
     }
 }
