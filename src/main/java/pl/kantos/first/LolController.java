@@ -17,12 +17,12 @@ public class LolController {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping("/account")
+    @GetMapping("/account/puuid")
     public String accountInfo(@RequestParam("accountName") String name, @RequestParam("tagLine") String tag) {
         return restTemplate.getForObject(LolApiAccountInfoUrlGenerator.generateUrl(name, tag, lolAPIPuuidHost, riotAPIKey), String.class);
     }
 
-    @PostMapping("/account")
+    @PostMapping("/account/puuid")
     public String accountInfoSecondOption(@RequestBody LolAccountRequest request) {
         return restTemplate.getForObject(LolApiAccountInfoUrlGenerator.generateUrl(request.accountName(), request.tagLine(), lolAPIPuuidHost, riotAPIKey), String.class);
     }
