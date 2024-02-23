@@ -12,8 +12,10 @@ public class LolController {
     public String lolAPIPuuidHost;
     @Value("${riotAPIKey}")
     public String riotAPIKey;
-    @Value("${lolAPISummonerInfo}")
+    @Value("${lolAPISummonerInfo.host}")
     public String lolAPISummonerInfo;
+    @Value("${lolChampionRotation.host}")
+    public String lolRotation;
 
     public LolController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -37,5 +39,10 @@ public class LolController {
     @PostMapping("/summoner")
     public String accountSummonerInfoSecondOption(@RequestBody LolSummonerRequest request) {
         return restTemplate.getForObject(LolSummonerInfoUrlGenerator.generateUrl(request.puuid(), riotAPIKey, lolAPISummonerInfo), String.class);
+    }
+
+    @GetMapping("rotation")
+    public String lolChampionsRotation() {
+        return restTemplate.getForObject(LolChampionRotationUrlGenerator.generateUrl(lolRotation, riotAPIKey), String.class);
     }
 }
