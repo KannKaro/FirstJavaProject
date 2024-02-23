@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/words")
 public class WordController {
     private final RestTemplate restTemplate;
-    @Value("${wordApi.host}")
+    @Value("${wordAPI.host}")
     public String wordApiHost;
 
     public WordController(RestTemplate restTemplate) {
