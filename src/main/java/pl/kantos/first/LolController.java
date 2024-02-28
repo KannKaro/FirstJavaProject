@@ -16,17 +16,19 @@ public class LolController {
     public String lolAPISummonerInfo;
     @Value("${lolChampionRotation.host}")
     public String lolRotation;
+    @Value("${lolChampionMastery.host}")
+    public String lolChampionMastery;
 
     public LolController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping("/account/puuid")
+    @GetMapping("/account")
     public String accountInfo(@RequestParam("accountName") String name, @RequestParam("tagLine") String tag) {
         return restTemplate.getForObject(LolApiAccountInfoUrlGenerator.generateUrl(name, tag, lolAPIPuuidHost, riotAPIKey), String.class);
     }
 
-    @PostMapping("/account/puuid")
+    @PostMapping("/account")
     public String accountInfoSecondOption(@RequestBody LolAccountRequest request) {
         return restTemplate.getForObject(LolApiAccountInfoUrlGenerator.generateUrl(request.accountName(), request.tagLine(), lolAPIPuuidHost, riotAPIKey), String.class);
     }
@@ -41,8 +43,14 @@ public class LolController {
         return restTemplate.getForObject(LolSummonerInfoUrlGenerator.generateUrl(request.puuid(), riotAPIKey, lolAPISummonerInfo), String.class);
     }
 
-    @GetMapping("rotation")
+    @GetMapping("/rotation")
     public String lolChampionsRotation() {
         return restTemplate.getForObject(LolChampionRotationUrlGenerator.generateUrl(lolRotation, riotAPIKey), String.class);
     }
+
+    @GetMapping("/mastery")
+    public String lolChampionMasteryInfo(@RequestParam String puuid) {
+        return restTemplate.getForObject(LolSummonerMasteryInfoGenerator.generateUrl(puuid, riotAPIKey, lolChampionMastery), String.class);
+    }
+
 }
